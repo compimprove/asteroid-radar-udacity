@@ -5,5 +5,5 @@ object Constants {
     const val DEFAULT_END_DATE_DAYS = 7
     const val BASE_ASTEROID_URL = "https://api.nasa.gov/"
     const val BASE_NASA_URL = "https://api.nasa.gov/"
-    const val API_KEY = ""
+    const val API_KEY = BuildConfig.NASA_API_KEY
 }
