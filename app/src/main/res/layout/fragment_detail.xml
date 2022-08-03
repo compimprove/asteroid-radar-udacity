@@ -7,7 +7,7 @@
 
         <variable
             name="asteroid"
-            type="com.udacity.asteroidradar.Asteroid" />
+            type="com.udacity.asteroidradar.domain.Asteroid" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,40 +15,46 @@
         android:layout_height="match_parent"
         android:background="@color/app_background">
 
-        <ImageView
-            android:id="@+id/activity_main_image_of_the_day"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            app:asteroidStatusImage="@{asteroid.potentiallyHazardous}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/asteroid_safe" />
 
         <ScrollView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_main_image_of_the_day">
+            app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
+                android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <ImageView
+                    android:id="@+id/activity_main_image_of_the_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="400dp"
+                    app:asteroidStatusImage="@{asteroid.potentiallyHazardous}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@drawable/asteroid_safe" />
+
                 <LinearLayout
+                    android:paddingTop="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
+                        style="@style/TextAppearance.Title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/close_approach_data_title"
-                        android:textColor="@color/default_text_color" />
+                        android:text="@string/close_approach_data_title" />
 
                     <TextView
                         android:id="@+id/close_approach_date"
@@ -74,10 +80,10 @@
                         android:orientation="vertical">
 
                         <TextView
+                            style="@style/TextAppearance.Title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/absolute_magnitude_title"
-                            android:textColor="@color/default_text_color" />
+                            android:text="@string/absolute_magnitude_title" />
 
                         <TextView
                             android:id="@+id/absolute_magnitude"
@@ -99,11 +105,11 @@
                 </LinearLayout>
 
                 <TextView
+                    style="@style/TextAppearance.Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="@string/estimated_diameter_title"
-                    android:textColor="@color/default_text_color" />
+                    android:text="@string/estimated_diameter_title" />
 
                 <TextView
                     android:id="@+id/estimated_diameter"
@@ -115,11 +121,11 @@
                     tools:text="0.82 km" />
 
                 <TextView
+                    style="@style/TextAppearance.Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="@string/relative_velocity_title"
-                    android:textColor="@color/default_text_color" />
+                    android:text="@string/relative_velocity_title" />
 
                 <TextView
                     android:id="@+id/relative_velocity"
@@ -131,11 +137,11 @@
                     tools:text="11.9 km/s" />
 
                 <TextView
+                    style="@style/TextAppearance.Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="@string/distance_from_earth_title"
-                    android:textColor="@color/default_text_color" />
+                    android:text="@string/distance_from_earth_title" />
 
                 <TextView
                     android:id="@+id/distance_from_earth"
