@@ -2,9 +2,13 @@ package com.udacity.asteroidradar.main
 
 import android.os.Bundle
 import android.view.*
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
@@ -31,22 +35,28 @@ class MainFragment : Fragment() {
             AsteroidListAdapter.OnClickListener {
                 viewModel.displayAsteroidDetails(it)
             })
-        viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
+        viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner) {
             if (null != it) {
                 this.findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
                 viewModel.displayAsteroidDetailsComplete()
             }
-        })
+        }
+        addMenuProvider()
         setHasOptionsMenu(true)
         return binding.root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.main_overflow_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
+    private fun addMenuProvider() {
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.main_overflow_menu, menu)
+            }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return true
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                viewModel.changeShowAsteroidMenu(menuItem.itemId)
+                return true
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 }

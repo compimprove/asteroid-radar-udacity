@@ -19,8 +19,6 @@ class PictureOfDayRepository(private val database: LocalDatabase) {
             if (picture.mediaType == "image") {
                 database.pictureOfDayDao.insert(picture)
                 database.pictureOfDayDao.clearExclude(picture.url)
-            } else {
-                database.pictureOfDayDao.clear()
             }
         }
     }

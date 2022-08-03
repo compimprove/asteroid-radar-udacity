@@ -40,6 +40,7 @@ android {
 dependencies {
     def lifecycle_version = "2.5.1"
     def room_version = "2.4.3"
+    def version_kotlin_coroutines = "1.6.1"
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
@@ -48,6 +49,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.5.1'
     implementation("androidx.navigation:navigation-ui:2.5.1")
 
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_kotlin_coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_kotlin_coroutines"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation 'androidx.fragment:fragment-ktx:1.5.1'
@@ -66,6 +69,7 @@ dependencies {
     implementation("androidx.room:room-runtime:$room_version")
     kapt "androidx.room:room-compiler:2.4.3"
     implementation "androidx.room:room-ktx:2.4.3"
+    implementation "androidx.work:work-runtime-ktx:2.7.1"
 
 
     testImplementation 'junit:junit:4.13.2'
