@@ -10,6 +10,7 @@ import com.udacity.asteroidradar.domain.PictureOfDay
 import com.udacity.asteroidradar.repository.AsteroidRepository
 import com.udacity.asteroidradar.repository.PictureOfDayRepository
 import com.udacity.asteroidradar.utils.combine
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class MainViewModel(app: Application) : AndroidViewModel(app) {

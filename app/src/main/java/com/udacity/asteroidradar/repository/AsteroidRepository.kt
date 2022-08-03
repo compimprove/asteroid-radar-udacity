@@ -24,7 +24,7 @@ class AsteroidRepository(private val database: LocalDatabase) {
         calendar.add(Calendar.DAY_OF_YEAR, Constants.DEFAULT_END_DATE_DAYS)
         val nextSevenDays = calendar.time
         val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
-        withContext(Dispatchers.IO){
+        withContext(Dispatchers.IO) {
             val playlist = Network.asteroidApiService.getAsteroidByDate(
                 startDate = dateFormat.format(currentTime),
                 endDate = dateFormat.format(nextSevenDays)
@@ -35,6 +35,12 @@ class AsteroidRepository(private val database: LocalDatabase) {
                     getNextSevenDaysFormattedDates()
                 ).toTypedArray()
             )
+        }
+    }
+
+    suspend fun clearAsteroids() {
+        withContext(Dispatchers.IO) {
+            database.asteroidDao.clear()
         }
     }
 }
